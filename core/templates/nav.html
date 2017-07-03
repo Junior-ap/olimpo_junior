@@ -1,0 +1,59 @@
+{% extends "importes.html" %}
+
+{% block 'nav' %}
+      <main>
+        <div class="ui container">
+
+          <div class="ui pointing menu">
+
+            <a class="item" href="#">
+              <i class="feed icon"></i>
+              Feed
+            </a>
+
+            <a class="item" href="#">
+              <i class="comment icon"></i>
+              Perguntar
+            </a>
+
+            <div class="right menu">
+
+              <div class="item">
+
+                <div class="ui transparent icon input">
+                  <form action="#" method="post">
+                    <div class="ui action input">
+                      <input type="text" name="search" placeholder="Pesquiar">
+                      <button class="ui icon button" type="submit" name="button">
+                        <i class="search icon"> </i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <a class="item" href="#">
+                <i class="user icon"> </i>
+                Nome do Usuario
+              </a>
+
+              <a class="item" href="#">
+                <i class="sign icon"> </i>
+                Login
+              </a>
+
+              <a class="item" href="#">
+                <i class="sign icon"> </i>
+                Sair
+              </a>
+
+            </div>
+
+          </div>
+
+          {% block 'content' %}
+          {% endblock  %}
+
+        </div>
+      </main>
+{% endblock  %}
