@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     #Minhas Apps
     'account',
     'forum',
@@ -108,9 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'pt_br'
+
+TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
 
@@ -123,3 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#auth
+#Configuração do modelo de authenticação e Usuario
+LOGIN_URL = 'account:login'
+LOGIN_REDIRECT_URL = 'forum:feed'
+LOGOUT_URL = 'account:logout'
+AUTH_USER_MODEL = 'account.User'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'account.backends.ModelBackend'
+)

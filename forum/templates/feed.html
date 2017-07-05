@@ -1,5 +1,85 @@
 {% extends "nav.html" %}
+{% load static %}
 
 {% block 'content' %}
-<h1>FEED</h1>
+            <div class="ui segments">
+                <header class="ui clearing segment">
+                    <div class="ui right floated floating labeled icon dropdown button">
+                        <i class="filter icon"></i>
+                        <span class="text">Filtros</span>
+                        <div class="menu">
+                            <div class="header">Filtrar por</div>
+                            <div class="divider"></div>
+                            <div class="item">
+                                Mais Recentes
+                            </div>
+                            <div class="item">
+                                Mais Visualizados
+                            </div>
+                            <div class="item">
+                                Meus Tópicos
+                            </div>
+                        </div>
+                    </div>
+                </header>
+<div class="ui segment">
+    <div class="ui large feed">
+
+   {% for topic in topics %}
+              <div class="event">
+                <div class="label">
+                  {% with 'img/avatars/'|add:topic.author.avatar|add:'.png' as avatar %}
+                  <img src="{% static avatar %}">
+                  {% endwith %}
+                </div>
+                <div class="content">
+                    <div class="summary">
+                        <a class="user">{{topic.author}}</a> fez uma <a href="{% url 'forum:detail' topic.pk %}">pergunta</a>
+                        <div class="date">à {{topic.created|timesince}} atrás</div>
+                    </div>
+                    <div class="extra text">
+                        {{topic.title}}
+                    </div>
+                    <div class="meta">
+                        <a>
+                          <i class="comments icon"></i>
+                          7 respostas
+                        </a>
+                        <a>
+                          <i class="eye icon"></i>
+                          Visualizações
+                        </a>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+</div>
+                <footer class="ui clearing segment">
+                    <div class="ui right floated buttons">
+                        <button class="ui icon disabled button">
+                            <i class="left chevron icon"></i>
+                        </button>
+                        <button class="ui active button">
+                            1
+                        </button>
+                        <button class="ui button">
+                            2
+                        </button>
+                        <button class="ui button">
+                            3
+                        </button>
+                        <button class="ui button">
+                            4
+                        </button>
+                        <button class="ui button">
+                            5
+                        </button>
+                        <button class="ui right icon button">
+                            <i class="right chevron icon"></i>
+                        </button>
+                    </div>
+                </footer>
+            </div>
+
 {% endblock  %}

@@ -1,0 +1,45 @@
+{% extends "nav.html" %}
+{% load widget_tweaks %}
+
+{% block 'content' %}
+<div class="ui clearing segment">
+
+    <form class="ui form" method="post">
+      {% csrf_token %}
+
+      <div class="filed">
+        <label for="form.title.auth_id">{{form.title.label}}</label>
+        {% render_field form.title placeholder="Qual é sua duvida?" %}
+        {% for error in form.title.errors %}
+          <div class="ui error message">
+            <div class="header">Atenção</div>
+            <p>{{error}}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+        <div class="field">
+
+          <label for="form.body.auto_id">{{form.body.label}}</label>
+          {% render_field form.body class="expand" rows="2" placeholder="Conte mais..."%}
+          {% for error in form.body.errors %}
+            <div class="ui error message">
+              <div class="header">Atenção</div>
+              <p>{{error}}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="ui error message"></div>
+
+        <button type="submit" class="ui animated right floated primary submit button" tabindex="0">
+            <div class="visible content">Perguntar</div>
+            <div class="hidden content">
+                <i class="add icon"></i>
+            </div>
+        </button>
+
+    </form>
+
+</div>
+{% endblock  %}
