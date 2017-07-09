@@ -31,6 +31,8 @@
             {{topic.body|linebreaks}}
           </div>
         </div>
+
+
       </div>
     </div>
   </div>
@@ -52,6 +54,16 @@
             {{reply.reply|linebreaks}}
           </div>
         </div>
+
+                {% if reply.correct %}
+                  {% if topic.author == user %}
+                    <a href="{% url 'forum:reply_incorrect' reply.pk %}">Cancelar Resposta Correta</a>
+                  {% endif %}
+                  <label>Resposta Indecada Pelo Autor</label>
+                {% elif topic.author == user %}
+                    <a href="{% url 'forum:reply_correct' reply.pk %}">Correta</a>
+                {% endif %}
+
       </div>
       {% empty %}
       <h1>Sem respostas até o momento :'(</h1>
@@ -61,7 +73,7 @@
     <form class="ui form" method="post">
       {% csrf_token %}
       {{form.reply.label_tag}}
-      
+
       {% render_field form.reply class="expand" rows="2" %}
 
       <button type="submit" class="ui right floated animated button green" tabindex="0">

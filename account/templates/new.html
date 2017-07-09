@@ -1,0 +1,93 @@
+{% extends 'importes.html' %}
+{% load widget_tweaks %}
+
+{% block 'nav' %}
+
+<main>
+
+  <div class="ui centered grid container">
+    <div class="nine wide column">
+
+      <div class="ui fluid card">
+        <div class="content">
+
+          <form class="ui form" method="post">
+            {% csrf_token %}
+
+            {% for error in form.non_field_errors %}
+            <div class="ui red message">{{error}}</div>
+            {% endfor %}
+
+            <div class="field">
+              <label for="{{form.username.auto_id}}" >{{form.username.label}}</label>
+              <div class="ui left icon input">
+                {% render_field form.username %}
+                <i class="user icon"></i>
+              </div>
+              {% for error in form.username.errors %}
+              <div class="ui error message">
+                <div class="header">Atenção!</div>
+                <p>{{error}}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="field">
+              <label for="{{form.email.auto_id}}" >{{form.email.label}}</label>
+              <div class="ui left icon input">
+                {% render_field form.email %}
+                <i class="mail icon"></i>
+              </div>
+              {% for error in form.email.errors %}
+              <div class="ui error message">
+                <div class="header">Atenção!</div>
+                <p>{{error}}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="field">
+              <label for="{{form.password1.auto_od}}">{{form.password1.label}}</label>
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                {% render_field form.password1 %}
+
+              </div>
+              {% for error in form.password1.errors %}
+              <div class="ui error message">
+                <div class="header">Atenção!</div>
+                <p>{{error}}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="field">
+              <label for="{{form.password2.auto_od}}">{{form.password2.label}}</label>
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                {% render_field form.password2 %}
+              </div>
+              {% for error in form.password2.errors %}
+              <div class="ui error message">
+                <div class="header">Atenção!</div>
+                <p>{{error}}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="ui error message"></div>
+            <button type="submit" class="ui animated primary right floated submit button" tabindex="0">
+              <div class="visible content">Registrar</div>
+              <div class="hidden content">
+                <i class="add user icon"></i>
+              </div>
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endblock %}
