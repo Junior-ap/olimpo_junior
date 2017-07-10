@@ -1,0 +1,30 @@
+{% extends "nav.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block 'content' %}
+
+<div class="ui segments">
+  <header class="ui clearing segment">
+    <a href="{% url 'account:edit_profile' %}" class="ui right floated yellow button">
+      Editar perfil
+    </a>
+    <a class="ui right floated teal button">
+      Meus Tópicos
+    </a>
+  </header>
+
+  <div class="ui segment">
+    <div class="ui large feed">
+      <div class="label">
+        {% with 'img/avatars/'|add:user.avatar|add:'.png' as avatar %}
+        <img src="{% static avatar %}">
+        {% endwith %}
+      </div>
+      <h1>Nome ou usuário: {{user}}</h1>
+      <h2>Email: {{user.email}}</h2>
+    </div>
+  <div>
+</div>
+
+{% endblock %}

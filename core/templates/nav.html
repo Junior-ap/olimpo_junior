@@ -32,7 +32,7 @@
                 </div>
               </div>
               {% if user.is_authenticated %}
-              <a class="item" href="#">
+              <a class="item" href="{% url 'account:profile' %}">
                 <i class="user icon"> </i>
                 {{user}}
               </a>

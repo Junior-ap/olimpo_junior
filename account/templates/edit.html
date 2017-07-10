@@ -1,0 +1,105 @@
+{% extends "nav.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block 'content' %}
+<div class="ui segments">
+  <header class="ui clearing segment">
+    <button class="ui right floated yellow button">
+      Editar perfil
+    </button>
+  </header>
+
+  <div class="ui segment">
+    <div class="ui large feed">
+
+      <form class="ui form" method="post">
+        {% csrf_token %}
+
+        <div class="field">
+          <label for="{{form.username.auto_id}}" >{{form.username.label}}</label>
+          <div class="ui left icon input">
+            {% render_field form.username %}
+            <i class="user icon"></i>
+          </div>
+          {% for error in form.username.errors %}
+          <div class="ui error message">
+            <div class="header">Atenção!</div>
+            <p>{{error}}</p>
+          </div>
+          {% endfor %}
+
+          <div class="field">
+            <label for="{{form.name.auto_id}}" >{{form.name.label}}</label>
+            <div class="ui left icon input">
+              {% if user.name %}
+              {% render_field form.name %}
+              {% else %}
+              {% render_field form.name placeholder="Queremos tratar você da melhor forma, informe seu nome" %}
+              {% endif %}
+              <i class="user icon"></i>
+            </div>
+            {% for error in form.name.errors %}
+            <div class="ui error message">
+              <div class="header">Atenção!</div>
+              <p>{{error}}</p>
+            </div>
+            {% endfor %}
+
+            <div class="field">
+              <label for="{{form.email.auto_id}}" >{{form.email.label}}</label>
+              <div class="ui left icon input">
+                {% render_field form.email %}
+                <i class="envelope icon"></i>
+              </div>
+              {% for error in form.email.errors %}
+              <div class="ui error message">
+                <div class="header">Atenção!</div>
+                <p>{{error}}</p>
+              </div>
+              {% endfor %}
+
+              <div class="field">
+                <label for="{{form.avatar.auto_id}}" >{{form.avatar.label}}</label>
+                <div class="ui left icon input">
+
+                  <div class="ui floating labeled icon dropdown button">
+                    <input type="hidden" name="avatar">
+                    <i class="photo icon"></i>
+                    <span class="text">Selecionar avatar</span>
+                    <div class="menu">
+
+                      {% for avatar in avatars %}
+                        <div class="item" data-value="{{avatar}}">
+                          {% with 'img/avatars/'|add:avatar|add:'.png' as path %}
+                          <img class="ui avatar image" src="{% static path %}">
+                          {% endwith %} {{avatar}}
+                        </div>
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              {% for error in form.avatar.errors %}
+              <div class="ui error message">
+                <div class="header">Atenção!</div>
+                <p>{{error}}</p>
+              </div>
+
+              {% endfor %}
+
+
+              <button type="submit" class="ui animated button green" tabindex="0">
+                <div class="visible content">Atualizar</div>
+                <div class="hidden content">
+                  <i class="check icon"></i>
+                </div>
+              </button>
+            </form>
+
+          </div>
+          <div>
+          </div>
+{% endblock %}
